@@ -1,4 +1,3 @@
-@-moz-document url-prefix(chrome://mozapps/content/extensions/extensions.xul), url-prefix(about:addons) {
 
 	/* dimensions / positioning */
 	#addons-page .main-content{
@@ -314,10 +313,6 @@
 #button-Status > * {
   padding: 0
 }
-.addon-control.preferences{
-  
-  background-color: #C5B8A8;
-}
 /* 
 #header{
 	
@@ -325,4 +320,3 @@
   -moz-box-direction: reverse;
 } */
 
-}

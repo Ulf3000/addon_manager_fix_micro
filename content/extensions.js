@@ -8,6 +8,16 @@
 /* globals XMLStylesheetProcessingInstruction */
 /* exported UPDATES_RELEASENOTES_TRANSFORMFILE, XMLURI_PARSE_ERROR, loadView */
 
+
+
+
+// --------------------------------------------------------------------------------------------
+//This is a slightly modified version of chrome://mozapps/content/extensions/extensions.js from waterfox 56
+// --------------------------------------------------------------------------------------------
+
+
+
+
 var Cc = Components.classes;
 var Ci = Components.interfaces;
 var Cu = Components.utils;
@@ -314,7 +324,7 @@ function getExperimentEndDate(aAddon) {
 	}
 
 	return experiment.endDate;
-	}
+}
 
 /**
  * Obtain the main DOMWindow for the current context.
@@ -4126,7 +4136,7 @@ var gDragDrop = {
 	}
 };
 
-//------------ADDON BIGINGS HERE------------------------------------------------------
+
 //+++++++++++++++++++++++++++ADDED FUNCTIONS SORTER AND FILTERBOX+++++++++++++++++++++++++++++++++
 
 var sortState = ["name"];
@@ -4134,8 +4144,14 @@ var sortAsc = true;
 var sortUiState = false;
 
 var amfSort = {
+	splitView: false,
+	butA: "",
+	butB: "",
+	butC: "",
+	header: "",
 	init: function () {
 		amfSort.header = document.getElementById("header");
+		//amfSort.header = document.getElementsByClassName("plugin-info-container")[0];
 		let butA = window.document.createElement("button");
 		butA.setAttribute("label", "Name");
 		butA.setAttribute("checked", "true");
@@ -4177,6 +4193,7 @@ var amfSort = {
 		amfSort.header.insertBefore(amfSort.butC, amfSort.header.firstChild);
 		amfSort.header.insertBefore(amfSort.butB, amfSort.header.firstChild);
 		amfSort.header.insertBefore(amfSort.butA, amfSort.header.firstChild);
+
 	},
 
 	filterAddons: function (e) {
@@ -4250,7 +4267,7 @@ window.addEventListener("load", function (e) {
 	amfSort.init();
 	window.addEventListener('ViewChanged', function (e) {
 		console.log(e.target.getAttribute("id"));
-		if (e.target.getAttribute("type") === "userstyle" || e.target.getAttribute("type") === "custombuttons" || e.target.getAttribute("type") === "greasemonkey-user-script" || e.target.getAttribute("id") === "search-view" || e.target.getAttribute("id") === "updates-view" || e.target.getAttribute("id") === "detail-view") {
+		if (e.target.getAttribute("type") === "userstyle" || e.target.getAttribute("type") === "custombuttons" || e.target.getAttribute("type") === "greasemonkey-user-script" || e.target.getAttribute("id") === "search-view" || e.target.getAttribute("id") === "updates-view") {
 			amfSort.filterBox.style.display = "none";
 			amfSort.butA.style.display = "none";
 			amfSort.butB.style.display = "none";
@@ -4261,7 +4278,7 @@ window.addEventListener("load", function (e) {
 			amfSort.butB.style.display = "";
 			amfSort.butC.style.display = "";
 
-			let value = new RegExp(amfSort.filterBox.value.trim(), "ig");
+			let value = new RegExp(amfSort.filterBox.value, "ig");
 			let list = document.getElementById('addon-list').childNodes;
 			for (let xxx of list) {
 				if (xxx.getAttribute("name").match(value)) {
@@ -4273,3 +4290,11 @@ window.addEventListener("load", function (e) {
 		}
 	}, false);
 }, false);
+
+
+
+//insert style 
+ 
+let pi = document.createProcessingInstruction('xml-stylesheet', 'href="chrome://addonmanagerfix/content/addonmanagerfix.css" type="text/css"');
+
+document.insertBefore(pi, document.firstChild);
