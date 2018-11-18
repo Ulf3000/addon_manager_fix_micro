@@ -1,5 +1,5 @@
 
-(wuantum version here: https://github.com/Ulf3000/addon_manager_fix_micro-quantum-)
+(quantum version here: https://github.com/Ulf3000/addon_manager_fix_micro-quantum-)
 # addon_manager_fix_micro
 better addon manager waterfox
 
